@@ -31,3 +31,6 @@ stripe==2.33.0
 urllib3==1.25.3
 wrapt==1.11.2
 # python manage.py runserver
+pandas
+matplotlib
+plotly

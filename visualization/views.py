@@ -8,15 +8,15 @@ import json
 # Create your views here.
 from django.http import JsonResponse
 from django.core import serializers
-
-
 from django.views.decorators.csrf import csrf_exempt
+
+from .models import *
 
 
 # from .models import Data
 
 
-class MyView(APIView):
+class MyView_Funtion1(APIView):
     def get(self, request):
         # start_date = request.GET.get('start_date')
         # end_date = request.GET.get('end_date')
@@ -36,11 +36,12 @@ class MyView(APIView):
         start_date = request.data.get('start_date')
         end_date = request.data.get('end_date')
         if start_date and end_date:
+            days, count = funtion1()
             # Xử lý dữ liệu
             data = {
                 'url_image': "thumbnail.png",
-                'aray': 11111111111,
-                "res": [1, 2]
+                'days': days,
+                "count": count
             }
             return Response(data, status=status.HTTP_200_OK)
         else:
