@@ -32,6 +32,9 @@ class CustomLayout extends React.Component {
             <Link to="/products">
               <Menu.Item header>Sản phẩm</Menu.Item>
             </Link>
+            <Link to="/statistic">
+              <Menu.Item header>Thống kê</Menu.Item>
+            </Link>
             {authenticated ? (
               <React.Fragment>
                 <Menu.Menu position="right">

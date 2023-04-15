@@ -1,0 +1,28 @@
+.statistic-main{
+    display: flex;
+    .nav-bar{
+        width: 30%;
+        border: 0px 1px 0px 0px solid;
+        .nav-item{
+            cursor: pointer;
+            border: 1px solid;
+            border-radius: 20px;
+            margin: 10px;
+            padding: 17px;
+            text-align: center;
+        }
+    }
+    .statistic-content{
+        margin: 20px;
+        .select-area{
+            display: flex;
+            margin: 20px;
+            .range-picker{
+                margin-right: 20px;
+            }
+        }
+        .statistic-diagram{
+
+        }
+    }
+}
