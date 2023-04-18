@@ -24,24 +24,20 @@ const Statistic = () => {
             method: 'post',
             // url: 'http://127.0.0.1:8000/visualization/1/',
             url: '/visualization/1/',
-
-            
             data : {
                 start_date: new Date(startDate).toLocaleDateString('sv'),
                 end_date: new Date(endDate).toLocaleDateString('sv'),
             }
         };
-
-		
 		return axios(config).then( (response) => {
             const urlImage = response.data.url_image;
             const ImageStore1 = require(`../assets/${urlImage}`)
-            console.log(response)
+            console.log(response);
             setImageSrc(ImageStore1);
           })
           .catch(function (error) {
             console.log(error);
-          });;
+          });
 
         
     };
