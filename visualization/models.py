@@ -15,7 +15,8 @@ import matplotlib.pyplot as plt
 mpl.use('Agg')
 
 
-conn = sqlite3.connect("E:\BTL_TMDT_D19\db.sqlite3", check_same_thread=False)
+conn = sqlite3.connect(
+    r"C:\Users\pc\Documents\GitHub\BTL_TMDT_D19\db.sqlite3", check_same_thread=False)
 
 
 def draw_image():
