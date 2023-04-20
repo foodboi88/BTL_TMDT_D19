@@ -150,3 +150,131 @@ class MyView_Funtion6(APIView):
             return Response(data, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion7(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict_0, my_dict_1 = funtion7(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict_0': my_dict_0,
+                'my_dict_1': my_dict_1,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion8(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict_0, my_dict_1 = funtion8(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict_0': my_dict_0,
+                'my_dict_1': my_dict_1,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion9(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict = funtion9(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict': my_dict,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion10(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict = funtion10(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict': my_dict,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion11(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict = funtion11(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict': my_dict,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion12(APIView):
+    def get(self, request):
+        data = {
+            'year': 2022,
+        }
+        return Response(data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        year = str(request.data.get('year'))
+        if year:
+            filename, my_dict = funtion12(year)
+            # Xử lý dữ liệu
+            data = {
+                'url_image': filename,
+                'my_dict': my_dict,
+            }
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
