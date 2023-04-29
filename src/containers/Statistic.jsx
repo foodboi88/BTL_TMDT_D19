@@ -12,51 +12,51 @@ const { RangePicker } = DatePicker;
 const navBarOptions = [
     {
         value: 1,
-        label: "Theo 1"
+        label: "Hàm thống kê 1"
     },
     {
         value: 2,
-        label: "Theo 2"
+        label: "Hàm thống kê 2"
     },
     {
         value: 3,
-        label: "Theo 3"
+        label: "Hàm thống kê 3"
     },
     {
         value: 4,
-        label: "Theo 4"
+        label: "Hàm thống kê 4"
     },
     {
         value: 5,
-        label: "Theo 5"
+        label: "Hàm thống kê 5"
     },
     {
         value: 6,
-        label: "Theo 6"
+        label: "Hàm thống kê 6"
     },
     {
         value: 7,
-        label: "Theo 7"
+        label: "Hàm thống kê 7"
     },
     {
         value: 8,
-        label: "Theo 8"
+        label: "Hàm thống kê 8"
     },
     {
         value: 9,
-        label: "Theo 9"
+        label: "Hàm thống kê 9"
     },
     {
         value: 10,
-        label: "Theo 10"
+        label: "Hàm thống kê 10"
     },
     {
         value: 11,
-        label: "Theo 11"
+        label: "Hàm thống kê 11"
     },
     {
         value: 12,
-        label: "Theo 12"
+        label: "Hàm thống kê 12"
     },
 ]
 
@@ -399,7 +399,7 @@ const Statistic = () => {
             <div className='nav-bar'>
                 {
                     navBarOptions.map(item=>(
-                        <div className='nav-item' onClick={()=> handleChangeStatType(item.value)}>
+                        <div className={`nav-item ${item.value === statType ? "active-nav-item" : ""}`} onClick={()=> handleChangeStatType(item.value)}>
                             {item.label}
                         </div>
                     ))
@@ -419,13 +419,13 @@ const Statistic = () => {
                     }
                     {
                         (statType===2 || statType===5 || statType === 7 || statType === 8|| statType === 9 || statType === 10 || statType === 11 || statType === 12) && 
-                        <DatePicker picker="year"  onChange={
+                        <DatePicker className="year-picker" picker="year"  onChange={
                             (val) => handleYearPicker(val)
                         }/>
                     }
                     {
                         (statType===3 || statType===6) && 
-                        <RangePicker picker="year" onChange={
+                        <RangePicker className='year-range-picker' picker="year" onChange={
                             (val) => handleYearRangePicker(val)
                         }/>
                     }

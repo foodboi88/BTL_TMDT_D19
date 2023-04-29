@@ -15,6 +15,8 @@ import { productListURL, addToCartURL } from "../constants";
 import { fetchCart } from "../store/actions/cart";
 import { authAxios } from "../utils";
 
+
+
 class ProductList extends React.Component {
   state = {
     loading: false,
@@ -71,7 +73,7 @@ class ProductList extends React.Component {
           {data.map(item => {
             return (
               <Item key={item.id}>
-                <Item.Image src={item.image} />
+                <img src={require(`../assets/ADIDAS 3CUNCE ART.jpg`)} />
                 <Item.Content>
                   <Item.Header
                     as="a"

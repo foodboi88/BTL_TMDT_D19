@@ -11,6 +11,11 @@
             padding: 17px;
             text-align: center;
         }
+
+        .active-nav-item{
+            color: white;
+            background-color: black;
+        }
     }
     .statistic-content{
         margin: 20px;
@@ -19,6 +24,14 @@
             margin: 20px;
             .range-picker{
                 margin-right: 20px;
+            }
+            .year-picker{
+                margin-right: 20px;
+
+            }
+            .year-range-picker{
+                margin-right: 20px;
+
             }
         }
         .statistic-diagram{
