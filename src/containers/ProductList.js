@@ -73,7 +73,7 @@ class ProductList extends React.Component {
           {data.map(item => {
             return (
               <Item key={item.id}>
-                <img src={require(`../assets/ADIDAS 3CUNCE ART.jpg`)} />
+                <img src={require(`../assets/${item.image.substring(28,item.image.length)}`)} />
                 <Item.Content>
                   <Item.Header
                     as="a"
