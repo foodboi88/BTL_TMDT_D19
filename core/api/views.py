@@ -97,6 +97,8 @@ class AddToCartView(APIView):
             user=request.user,
             ordered=False
         )
+        print("......................")
+        print(order_item_qs)
         for v in variations:
             order_item_qs = order_item_qs.filter(
                 Q(item_variations__exact=v)
@@ -173,7 +175,7 @@ class PaymentView(APIView):
 
         try:
 
-                # charge the customer because we cannot charge the token more than once
+            # charge the customer because we cannot charge the token more than once
             charge = stripe.Charge.create(
                 amount=amount,  # cents
                 currency="usd",
