@@ -32,7 +32,8 @@ class ProductDetail extends React.Component {
     error: null,
     formVisible: false,
     data: [],
-    formData: {}
+    formData: {},
+    imageUrl: ''
   };
 
   componentDidMount() {
@@ -55,6 +56,7 @@ class ProductDetail extends React.Component {
       .get(productDetailURL(params.productID))
       .then(res => {
         this.setState({ data: res.data, loading: false });
+        this.setState({imageUrl: require(`../assets/${res.data.image.substring(28,res.data.image.length)}`)})
       })
       .catch(err => {
         this.setState({ error: err, loading: false });
@@ -95,7 +97,7 @@ class ProductDetail extends React.Component {
   };
 
   render() {
-    const { data, error, formData, formVisible, loading } = this.state;
+    const { data, error, formData, formVisible, loading, imageUrl } = this.state;
     const item = data;
     return (
       <Container>
@@ -119,7 +121,7 @@ class ProductDetail extends React.Component {
             <Grid.Column>
               <Card
                 fluid
-                image={item.image}
+                image={imageUrl}
                 header={item.title}
                 meta={
                   <React.Fragment>
@@ -198,12 +200,12 @@ class ProductDetail extends React.Component {
                         {v.item_variations.map(iv => {
                           return (
                             <Item key={iv.id}>
-                              {iv.attachment && (
-                                <Item.Image
-                                  size="tiny"
-                                  src={`http://127.0.0.1:8000${iv.attachment}`}
-                                />
-                              )}
+                              {/* {iv.attachment && (
+                                // <Item.Image
+                                //   size="tiny"
+                                //   src={`http://127.0.0.1:8000${iv.attachment}`}
+                                // />
+                              )} */}
                               <Item.Content verticalAlign="middle">
                                 {iv.value}
                               </Item.Content>

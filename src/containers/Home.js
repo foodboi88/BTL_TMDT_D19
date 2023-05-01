@@ -12,6 +12,9 @@ import {
   Sidebar,
   Visibility
 } from "semantic-ui-react";
+import Home1 from "../assets/home_1.jpg"
+import Home2 from "../assets/home_2.jpg"
+import Home3 from "../assets/home_3.webp"
 
 const getWidth = () => {
   const isSSR = typeof window === "undefined";
@@ -83,7 +86,7 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
-    <Segment style={{ padding: "8em 0em" }} vertical>
+    <Segment style={{ padding: "2em 0em" }} vertical>
       <Grid container stackable verticalAlign="middle">
         <Grid.Row>
           <Grid.Column width={8}>
@@ -105,7 +108,8 @@ const HomepageLayout = () => (
               bordered
               rounded
               size="large"
-              src="/images/wireframe/white-image.png"
+              src={Home1}
+              style={{width: "140%"}}
             />
           </Grid.Column>
         </Grid.Row>
@@ -124,15 +128,17 @@ const HomepageLayout = () => (
               Air Force 1 Louis Vuitton hàng Best Quality
             </Header>
             <p style={{ fontSize: "1.33em" }}>
+              <Image src={Home3} />
+
               Hàng đẹp nhất thị trường hiện tại, vân dập nét căng, chất da bò dày, đường chỉ may đều và gọn. Có sẵn tại shop 1 vài size, giá 5tr5. Bạn có thể trực tiếp đến xem hàng tại shop.
             </p>
           </Grid.Column>
           <Grid.Column style={{ paddingBottom: "5em", paddingTop: "5em" }}>
             <Header as="h3" style={{ fontSize: "2em" }}>
-            Giày Air Jordan 1 Low Gym Red Trắng Đỏ Siêu Cấp TT
+            Giày Air Jordan 1 Low Blue Siêu Cấp TT
             </Header>
             <p style={{ fontSize: "1.33em" }}>
-              <Image avatar src="/images/avatar/large/nan.jpg" />
+              <Image src={Home2} />
               Phiên bản Air Jordan 1 Low mới nhất của Nike đã được bổ sung một phối màu cực hiếm, chắc chắn sẽ gây ra sự cạnh tranh giữa các tín đồ giày.
             </p>
           </Grid.Column>

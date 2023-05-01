@@ -74,7 +74,7 @@ class ProductList extends React.Component {
             return (
               <Item key={item.id}>
                 <img src={require(`../assets/${item.image.substring(28,item.image.length)}`)} />
-                <Item.Content>
+                <Item.Content style={{marginLeft: '42px'}}>
                   <Item.Header
                     as="a"
                     onClick={() =>
