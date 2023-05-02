@@ -32,9 +32,9 @@ class CustomLayout extends React.Component {
             <Link to="/products">
               <Menu.Item header>Sản phẩm</Menu.Item>
             </Link>
-            <Link to="/statistic">
+            {/* <Link to="/statistic">
               <Menu.Item header>Thống kê</Menu.Item>
-            </Link>
+            </Link> */}
             {authenticated ? (
               <React.Fragment>
                 <Menu.Menu position="right">
@@ -79,6 +79,9 @@ class CustomLayout extends React.Component {
                   <Menu.Item header onClick={() => this.props.logout()}>
                     Đăng xuất
                   </Menu.Item>
+                  <Link to="/statistic">
+                    <Menu.Item header>Thống kê</Menu.Item>
+                  </Link>
                 </Menu.Menu>
               </React.Fragment>
             ) : (
