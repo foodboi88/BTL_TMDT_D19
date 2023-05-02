@@ -31,6 +31,7 @@ import {
 
 const OrderPreview = props => {
   const { data } = props;
+  
   return (
     <React.Fragment>
       {data && (
@@ -41,7 +42,7 @@ const OrderPreview = props => {
                 <Item key={i}>
                   <Item.Image
                     size="tiny"
-                    src={`http://127.0.0.1:8000${orderItem.item.image}`}
+                    src={require(`../assets/${orderItem.item.image.substring(7,orderItem.item.image.length)}`)}
                   />
                   <Item.Content verticalAlign="middle">
                     <Item.Header as="a">

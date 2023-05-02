@@ -50,13 +50,14 @@ def funtion1(start_date="2022-01-17", end_date="2022-04-25"):
     for i in range(len(days)):
         days[i] = str(pd.Timestamp(days[i]))[0:10]
 
-    # Vẽ biểu đồ cột
-    plt.bar(days, count)
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    plt.plot(days,count, "r-",marker=".")
+    plt.xticks(range(len(days)), days, rotation=90)
+    plt.title('Biểu đồ hiển thị số lượng hóa đơn theo ngày')
+    plt.xlabel("Ngày")
+    plt.ylabel("Số lượng")
     filename = save_image()
-
     return filename, days, count
+
 
 
 def funtion2(year="2022"):
@@ -76,10 +77,19 @@ def funtion2(year="2022"):
         months[i] = str(pd.Timestamp(months[i]))[5:7]
         my_dict[str(months[i])] = count[i]
     plt.bar(my_dict.keys(), my_dict.values())
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    plt.xlabel('Tháng')
+    plt.ylabel('Số lượng hóa đơn')
+    plt.title("Biểu đồ thể hiện số lượng hóa đơn theo tháng trong năm")
+     # Đặt số cột trên đỉnh các cột
+    for i, v in enumerate(my_dict.values()):
+        plt.text(i, v + 1, str(v), ha='center', fontsize=10)
+
     filename = save_image()
+
     return filename, my_dict
+
+
+
 
 
 def funtion3(start_year="2019", end_year="2022"):
@@ -102,17 +112,24 @@ def funtion3(start_year="2019", end_year="2022"):
         my_dict[str(years[i])] = count[i]
 
     plt.bar(my_dict.keys(), my_dict.values())
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    plt.xlabel('Năm')
+    plt.ylabel('Số lượng hóa đơn')
+    plt.title(f"Biểu đồ thể hiện số lượng hóa đơn theo các năm {start_year} đến {end_year}")
+    for i, v in enumerate(my_dict.values()):
+        plt.text(i, v + 1, str(v), ha='center', fontsize=10)
+
     filename = save_image()
     return filename, my_dict
 
 
-def funtion4(start_date="2022-01-01", end_date="2023-01-04", flag='D'):
+
+
+def funtion4(start_date="2022-01-01", end_date="2022-01-05", flag='D'):
     query = f"SELECT 'core_order'.'id', 'core_order'.'ordered_date','core_payment'.'amount' FROM 'core_payment', 'core_order' where 'core_order'.'payment_id'='core_payment'.'id' and 'core_order'.'ordered'=1 and 'core_order'.'ordered_date'>='{start_date}' and 'core_order'.'ordered_date'<='{end_date}' order by start_date ASC"
     df = pd.read_sql_query(query, conn)
     # Chuyển đổi trường 'start_date' sang kiểu datetime
     df['ordered_date'] = pd.to_datetime(df['ordered_date'])
+    # print(df)
     if flag == 'D' or flag == 'd':
         df['date'] = df['ordered_date'].dt.date
         time_amount = df.groupby('date')['amount'].sum()
@@ -120,15 +137,19 @@ def funtion4(start_date="2022-01-01", end_date="2023-01-04", flag='D'):
     amount = time_amount.values.tolist()
     for i in range(len(days)):
         days[i] = str(days[i])
-    plt.bar(days, amount)
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    # print(f"count: {len()}")
+    plt.plot(days,amount, "r-",marker=".")
+    plt.title(f"Biểu đồ thể hiện doanh thu từ hóa đơn theo ngày {start_date} đến {end_date}")
+    plt.xlabel("Ngày")
+    plt.ylabel("Doanh thu")
     filename = save_image()
 
     return filename, days, amount
 
 
-def funtion5(year="2022", conn=conn, flag='M'):
+
+
+def funtion5(year="2022", flag='M'):
     start_date = year+"-01-01"
     end_date = year+"-12-31"
     query = f"SELECT 'core_order'.'id', 'core_order'.'ordered_date','core_payment'.'amount' FROM 'core_payment', 'core_order' where 'core_order'.'payment_id'='core_payment'.'id' and 'core_order'.'ordered'=1 and 'core_order'.'ordered_date'>='{start_date}' and 'core_order'.'ordered_date'<='{end_date}' order by start_date ASC"
@@ -149,14 +170,20 @@ def funtion5(year="2022", conn=conn, flag='M'):
         months[i] = str(months[i])
         my_dict[str(months[i])] = amount[i]
     plt.bar(my_dict.keys(), my_dict.values())
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    plt.title(f"Biểu đồ thể hiện doanh thu từ hóa đơn theo các tháng trong năm {year}")
+    plt.xlabel('Tháng')
+    plt.ylabel('Doanh thu') 
+
+
     filename = save_image()
 
     return filename, my_dict
 
 
-def funtion6(start_year="2021", end_year="2027", conn=conn):
+
+
+
+def funtion6(start_year="2022", end_year="2023"):
     start_date = start_year+"-01-01"
     end_date = end_year+"-12-31"
     query = f"SELECT 'core_order'.'id', 'core_order'.'ordered_date','core_payment'.'amount' FROM 'core_payment', 'core_order' where 'core_order'.'payment_id'='core_payment'.'id' and 'core_order'.'ordered'=1 and 'core_order'.'ordered_date'>='{start_date}' and 'core_order'.'ordered_date'<='{end_date}' order by start_date ASC"
@@ -178,17 +205,25 @@ def funtion6(start_year="2021", end_year="2027", conn=conn):
         my_dict[str(years[i])] = amount[i]
 
     plt.bar(my_dict.keys(), my_dict.values())
-    plt.xlabel('X Label')
-    plt.ylabel('Y Label')
+    plt.title(f"BIỂU ĐỒ THÊ HIỆN DOANH THU TỪ HÓA ĐƠN THEO NĂM {start_year} đến {end_year}")
+    plt.xlabel('Năm')
+    plt.ylabel('Doanh thu')
+    # for i, v in enumerate(my_dict.values()):
+    #     plt.text(i, v + 1, str(v), ha='center', fontsize=10)
+
+
     filename = save_image()
 
     return filename, my_dict
 
 
-def funtion7(year="2022"):
+
+
+
+def funtion7(year="2023"):
     start_date = year+"-01-01"
     end_date = year+"-12-31"
-    print(start_date)
+    # print(start_date)
     query = f"select core_order.id, ordered_date,ordered, amount from core_order, core_payment where ordered_date>='{start_date}' and ordered_date<='{end_date}' and core_order.payment_id=core_payment.id"
     df = pd.read_sql(query, conn)
     df['ordered_date'] = pd.to_datetime(df['ordered_date'])
@@ -199,17 +234,15 @@ def funtion7(year="2022"):
         'id'].count().reset_index()
     order_summary_pivot = pd.pivot_table(
         order_summary, values='id', index='order_date', columns='ordered', fill_value=0)
-    # print(order_summary_pivot)
-    # order_summary_pivot.plot(kind='bar', stacked=False)
+    # print(f"order_summary_pivot: {order_summary_pivot}")
     my_dict_0 = {'1': 0, '2': 0, '3': 0,  '4': 0, '5': 0, '6': 0,
                  '7': 0, '8': 0, '9': 0, '10': 0, '11': 0, '12': 0}
     my_dict_1 = {'1': 0, '2': 0, '3': 0,  '4': 0, '5': 0, '6': 0,
                  '7': 0, '8': 0, '9': 0, '10': 0, '11': 0, '12': 0}
     for o in range(len(order_summary_pivot)):
-        my_dict_0[str(order_summary_pivot.index[o])
-                  ] = order_summary_pivot[0].values[o]
-        my_dict_1[str(order_summary_pivot.index[o])
-                  ] = order_summary_pivot[1].values[o]
+      # print(f"order_summary_pivot.index[o]: {type(str(order_summary_pivot.index[o]))}")
+      my_dict_0[str(order_summary_pivot.index[o])] = order_summary_pivot[0].values[o] +order_summary_pivot[1].values[o]
+      my_dict_1[str(order_summary_pivot.index[o])] = order_summary_pivot[1].values[o]
 
     X = my_dict_0.keys()
     order_date = my_dict_0.values()
@@ -220,13 +253,16 @@ def funtion7(year="2022"):
     plt.xticks(X_axis, X)
     plt.xlabel("Tháng")
     plt.ylabel("Số lượng")
-    plt.title("BẢng thống kê")
+    plt.title(f"Biểu đồ thể hiện số lượng đơn đặt hàng và hóa đơn theo các tháng trong năm {year}")
     plt.legend()
     filename = save_image()
     return filename, my_dict_0, my_dict_1
 
 
-def funtion8(year="2022"):
+
+
+
+def funtion8(year="2023"):
     start_date = year+"-01-01"
     end_date = year+"-12-31"
     query = f"select core_order.id, ordered_date,ordered, amount from core_order, core_payment where ordered_date>='{start_date}' and ordered_date<='{end_date}' and core_order.payment_id=core_payment.id"
@@ -255,20 +291,20 @@ def funtion8(year="2022"):
     X = my_dict_0.keys()
     order_date = my_dict_0.values()
     ordered = my_dict_1.values()
-    X_axis = np.arange(len(X))
-    plt.bar(X_axis - 0.2, order_date, 0.4, label='Đơn hàng')
-    plt.bar(X_axis + 0.2, ordered, 0.4, label='Hóa đơn')
-    plt.xticks(X_axis, X)
+
+    plt.plot(my_dict_0.keys(),order_date, "r-",marker=".")
+    plt.plot(my_dict_0.keys(),ordered, "b--",marker=".")
+    plt.legend(["đơn hàng chưa thanh toán","hóa đơn"])
     plt.xlabel("Tháng")
     plt.ylabel("Doanh thu")
-    plt.title("BẢng thống kê")
-    plt.legend()
+    plt.title(f"Biểu đồ thể hiện số lượng đơn hàng chưa thanh toán và hóa đơn {year}")
     filename = save_image()
 
     return filename, my_dict_0, my_dict_1
 
 
-def funtion9(year="2022", quantity=5):
+
+def funtion9(year="2021", quantity=5):
     import json
     start_date = year+"-01-01"
     end_date = year+"-12-31"
@@ -297,6 +333,7 @@ def funtion9(year="2022", quantity=5):
             wedgeprops={"edgecolor": "white",
                         'linewidth': 5,
                         'antialiased': True})
+    plt.title(f"Biểu đồ thể hiện top {quantity} sản phẩm bán chạy trong năm {year}")
     plt.axis('equal')
 
     filename = save_image()
@@ -304,7 +341,8 @@ def funtion9(year="2022", quantity=5):
     return filename, my_dict
 
 
-def funtion10(year="2022", quantity=5):
+
+def funtion10(year="2023", quantity=5):
     import json
     start_date = year+"-01-01"
     end_date = year+"-12-31"
@@ -326,19 +364,21 @@ def funtion10(year="2022", quantity=5):
     my_dict = {key: value for key, value in zip(title, total_quantity)}
     title = my_dict.keys()
     total_quantity = my_dict.values()
+    print(title , total_quantity)
     explode = [0.1]*len(title)
-
     plt.pie(total_quantity, explode=explode, labels=title,
             autopct='%1.1f%%', startangle=0,
             wedgeprops={"edgecolor": "white",
                         'linewidth': 5,
                         'antialiased': True})
     plt.axis('equal')
+    plt.title(f"Biểu đồ thể hiện top 5 thương hiệu nổi bật {year}")
     filename = save_image()
     return filename, my_dict
 
 
-def funtion11(year="2022", quantity=20):
+
+def funtion11(year="2021", quantity=20):
     start_date = year+"-01-01"
     end_date = year+"-12-31"
     query = f"""
@@ -368,9 +408,13 @@ def funtion11(year="2022", quantity=20):
     wc.generate_from_frequencies(my_dict)
     plt.figure(figsize=(10, 6))
     plt.imshow(wc, interpolation='bilinear')
+    plt.title(f"Biểu đồ thể hiện {quantity} khách hàng tiềm năng trong năm {year}")
     plt.axis('off')
     filename = save_image()
     return filename, my_dict
+
+
+
 
 
 def funtion12(year="2022", quantity=10):
@@ -403,6 +447,7 @@ def funtion12(year="2022", quantity=10):
     wc = WordCloud(margin=5, width=900, height=600, background_color='white')
     wc.generate_from_frequencies(my_dict)
     plt.figure(figsize=(10, 6))
+    plt.title(f"Biểu đồ thể hiện {quantity} khách hàng chi tiêu trong năm {year}")
     plt.imshow(wc, interpolation='bilinear')
     plt.axis('off')
     filename = save_image()
