@@ -148,26 +148,34 @@ class OrderDetailView(RetrieveAPIView):
 class PaymentView(APIView):
 
     def post(self, request, *args, **kwargs):
+        print(request)
         order = Order.objects.get(user=self.request.user, ordered=False)
         userprofile = UserProfile.objects.get(user=self.request.user)
+        # print(userprofile, order)
         token = request.data.get('stripeToken')
+        # print(token)
         billing_address_id = request.data.get('selectedBillingAddress')
         shipping_address_id = request.data.get('selectedShippingAddress')
-
+        # print(billing_address_id, shipping_address_id)
         billing_address = Address.objects.get(id=billing_address_id)
         shipping_address = Address.objects.get(id=shipping_address_id)
+        # print(billing_address, shipping_address)
 
         if userprofile.stripe_customer_id != '' and userprofile.stripe_customer_id is not None:
-            customer = stripe.Customer.retrieve(
-                userprofile.stripe_customer_id)
-            customer.sources.create(source=token)
+            pass
+            # customer = stripe.Customer.retrieve(
+            #     userprofile.stripe_customer_id)
+            # print(customer)
+            # customer.sources.create(source=token)
 
         else:
-            customer = stripe.Customer.create(
-                email=self.request.user.email,
-            )
-            customer.sources.create(source=token)
-            userprofile.stripe_customer_id = customer['id']
+            # customer = stripe.Customer.create(
+            #     email=self.request.user.email,
+            # )
+            # print(customer)
+            # customer.sources.create(source=token)
+            # userprofile.stripe_customer_id = customer['id']
+            userprofile.stripe_customer_id = "123456"
             userprofile.one_click_purchasing = True
             userprofile.save()
 
@@ -176,11 +184,11 @@ class PaymentView(APIView):
         try:
 
             # charge the customer because we cannot charge the token more than once
-            charge = stripe.Charge.create(
-                amount=amount,  # cents
-                currency="usd",
-                customer=userprofile.stripe_customer_id
-            )
+            # charge = stripe.Charge.create(
+            #     amount=amount,  # cents
+            #     currency="usd",
+            #     customer=userprofile.stripe_customer_id
+            # )
             # charge once off on the token
             # charge = stripe.Charge.create(
             #     amount=amount,  # cents
@@ -190,7 +198,8 @@ class PaymentView(APIView):
 
             # create the payment
             payment = Payment()
-            payment.stripe_charge_id = charge['id']
+            # payment.stripe_charge_id = charge['id']
+            payment.stripe_charge_id = "123456"
             payment.user = self.request.user
             payment.amount = order.get_total()
             payment.save()
