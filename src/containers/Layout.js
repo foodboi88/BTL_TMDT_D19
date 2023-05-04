@@ -76,12 +76,38 @@ class CustomLayout extends React.Component {
                       )}
                     </Dropdown.Menu>
                   </Dropdown>
+                  <Dropdown
+                    icon="book"
+                    loading={loading}
+                    text={`Hỗ trợ Admin`}
+                    pointing
+                    className="link item"
+                  >
+                    <Dropdown.Menu>
+                      
+
+                      <Dropdown.Item
+                        icon="arrow right"
+                        text="Thống kê"
+                        onClick={() =>
+                          this.props.history.push("/statistic")
+                        }
+                      />
+                      <Dropdown.Item
+                        icon="arrow right"
+                        text="Hỗ trợ ra quyết định"
+                        onClick={() =>
+                          this.props.history.push("/support-admin")
+                        }
+                      />
+                        
+                    </Dropdown.Menu>
+                  </Dropdown>
+                 
                   <Menu.Item header onClick={() => this.props.logout()}>
                     Đăng xuất
                   </Menu.Item>
-                  <Link to="/statistic">
-                    <Menu.Item header>Thống kê</Menu.Item>
-                  </Link>
+                  
                 </Menu.Menu>
               </React.Fragment>
             ) : (

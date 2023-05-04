@@ -11,6 +11,7 @@ import OrderSummary from "./containers/OrderSummary";
 import Checkout from "./containers/Checkout";
 import Profile from "./containers/Profile";
 import Statistic from "./containers/Statistic";
+import SupportAdmin from "./containers/SupportAdmin";
 
 const BaseRouter = () => (
   <Hoc>
@@ -22,6 +23,8 @@ const BaseRouter = () => (
     <Route path="/checkout" component={Checkout} />
     <Route path="/profile" component={Profile} />
     <Route path="/statistic" component={Statistic}/>
+    <Route path="/support-admin" component={SupportAdmin}/>
+
     <Route exact path="/" component={HomepageLayout} />
   </Hoc>
 );
