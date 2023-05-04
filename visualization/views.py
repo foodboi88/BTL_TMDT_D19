@@ -278,3 +278,16 @@ class MyView_Funtion12(APIView):
             return Response(data, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Missing start_date or end_date parameter'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class MyView_Funtion13_partner(APIView):
+    def get(self, request):
+        trivela = crawl_data_trivela()
+
+        oss = crawl_data_oss()
+        data = {
+            'trivela': trivela,
+            'oss': oss
+
+        }
+        return Response(data, status=status.HTTP_200_OK)
