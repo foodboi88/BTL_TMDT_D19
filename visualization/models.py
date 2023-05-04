@@ -9,6 +9,8 @@ from django.db import models
 import sqlite3
 import pandas as pd
 import datetime
+import requests
+from bs4 import BeautifulSoup
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -581,3 +583,91 @@ def funtion12(year="2022", quantity=10):
     # Lưu wordcloud thành file ảnh và trả về tên file cùng với dictionary.
     filename = save_image()
     return filename, my_dict
+
+
+def crawl_data_trivela():
+    response = requests.get("https://trivela.vn/collection/collection/product/giay-the-thao-c7042/?orderby=popularity")
+    html = response.content
+    soup = BeautifulSoup(html,"html.parser")
+
+    t = soup.find_all("div",class_="product-details-wrapper")
+    names = []
+    prices = []
+
+    for tex in t:
+        name = tex.find('h3', class_='product-title').find('a').text
+        index = name.find("[")
+        name_result = ""
+        if index == -1:
+            name_parts = name.split(' ')
+            name_result = ' '.join(name_parts[:-2])
+        else:
+            # Lấy một đoạn con của chuỗi từ đầu đến vị trí đó, và loại bỏ các khoảng trắng thừa ở đầu và cuối chuỗi
+            name_result = name[:index].strip()
+        names.append(name_result)
+    
+        ts = tex.find_all('span', class_='woocommerce-Price-amount')
+        for i in ts:
+            price = i.text.strip()
+            prices.append(int(price.replace('₫', '').replace(',', '')))
+    
+    names = names[:10]
+    prices = prices[:10]
+    result_dict = dict(zip(names, prices))
+    
+    # Xử lý kết quả 
+    url = "https://trivela.vn"
+    content = []
+    for name, price in result_dict.items():
+        content.append({
+            "name": name,
+            "price": price
+        })
+
+    # Tạo dictionary kết quả
+    result = {
+        "url": url,
+        "content": content
+    }
+
+    return result
+
+
+
+def crawl_data_oss():
+    response = requests.get("https://oss.com.vn/collections/sneaker?sort_by=best-selling")
+    html = response.content
+    soup = BeautifulSoup(html,"html.parser")
+
+    t = soup.find_all("div",class_="product-detail clearfix")
+    results = {}
+    names = []
+    prices = []
+    for text in t:
+        pro_name = text.find('h3', class_='pro-name').text.strip()
+        pro_price = text.find('p', class_='pro-price').text.strip().split()[0]
+        price = int(pro_price.replace('₫', '').replace(',', ''))
+        names.append(pro_name)
+        prices.append(price)
+
+    names = names[:10]
+    prices = prices[:10]
+    result_dict = dict(zip(names, prices))
+    
+    # Xử lý kết quả 
+    url = "https://oss.com.vn"
+    content = []
+    for name, price in result_dict.items():
+        content.append({
+            "name": name,
+            "price": price
+        })
+
+    # Tạo dictionary kết quả
+    result = {
+        "url": url,
+        "content": content
+    }
+
+    return result
+
