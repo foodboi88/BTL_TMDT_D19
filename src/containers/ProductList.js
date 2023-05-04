@@ -14,6 +14,7 @@ import {
 import { productListURL, addToCartURL } from "../constants";
 import { fetchCart } from "../store/actions/cart";
 import { authAxios } from "../utils";
+import SaleBanner from "../assets/sale-banner.jpg"
 
 
 
@@ -53,6 +54,7 @@ class ProductList extends React.Component {
     const { data, error, loading } = this.state;
     return (
       <Container>
+        <img style={{width: "98%"}} src={SaleBanner}/>
         {error && (
           <Message
             error
