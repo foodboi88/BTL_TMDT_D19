@@ -12,74 +12,74 @@ const { RangePicker } = DatePicker;
 const navBarOptions = [
     {
         value: 1,
-        label: "Hàm thống kê 1"
+        label: "Số lượng hóa đơn theo ngày"
     },
     {
         value: 2,
-        label: "Hàm thống kê 2"
+        label: "Số lượng hóa đơn theo từng tháng trong năm"
     },
     {
         value: 3,
-        label: "Hàm thống kê 3"
+        label: "Số lượng hóa đơn theo các năm"
     },
     {
         value: 4,
-        label: "Hàm thống kê 4"
+        label: "Số doanh thu từ hóa đơn theo ngày"
     },
     {
         value: 5,
-        label: "Hàm thống kê 5"
+        label: "Doanh thu từ hóa đơn các tháng trong năm"
     },
     {
         value: 6,
-        label: "Hàm thống kê 6"
+        label: "Doanh thu hóa đơn trong các năm"
     },
     {
         value: 7,
-        label: "Hàm thống kê 7"
+        label: "Số lượng đơn đặt hàng và hóa đơn trong năm"
     },
     {
         value: 8,
-        label: "Hàm thống kê 8"
+        label: "Tổng Tiền đơn hàng chưa thanh toán và hóa đơn trong năm"
     },
     {
         value: 9,
-        label: "Hàm thống kê 9"
+        label: "Các sản phẩm bán chạy theo năm"
     },
     {
         value: 10,
-        label: "Hàm thống kê 10"
+        label: "Các thương hiệu có hàng bán chạy trong các năm"
     },
     {
         value: 11,
-        label: "Hàm thống kê 11"
+        label: "Khách hàng tiềm năng theo năm"
     },
     {
         value: 12,
-        label: "Hàm thống kê 12"
+        label: "Khách hàng chi tiêu theo năm"
     },
 ]
 
 
 const Statistic = () => {
-    const [statType,setStatType] = useState(localStorage.getItem("statType") ? parseInt(localStorage.getItem("statType")) : 1);
+    const [statType, setStatType] = useState(localStorage.getItem("statType") ? parseInt(localStorage.getItem("statType")) : 1);
 
-    const [imageSrc1,setImageSrc1] = useState();
-    const [imageSrc2,setImageSrc2] = useState();
-    const [imageSrc3,setImageSrc3] = useState();
-    const [imageSrc4,setImageSrc4] = useState();
-    const [imageSrc5,setImageSrc5] = useState();
-    const [imageSrc6,setImageSrc6] = useState();
-    const [imageSrc7,setImageSrc7] = useState();
-    const [imageSrc8,setImageSrc8] = useState();
-    const [imageSrc9,setImageSrc9] = useState();
-    const [imageSrc10,setImageSrc10] = useState();
-    const [imageSrc11,setImageSrc11] = useState();
-    const [imageSrc12,setImageSrc12] = useState();
+    const [imageSrc1, setImageSrc1] = useState();
+    const [imageSrc2, setImageSrc2] = useState();
+    const [imageSrc3, setImageSrc3] = useState();
+    const [imageSrc4, setImageSrc4] = useState();
+    const [imageSrc5, setImageSrc5] = useState();
+    const [imageSrc6, setImageSrc6] = useState();
+    const [imageSrc7, setImageSrc7] = useState();
+    const [imageSrc8, setImageSrc8] = useState();
+    const [imageSrc9, setImageSrc9] = useState();
+    const [imageSrc10, setImageSrc10] = useState();
+    const [imageSrc11, setImageSrc11] = useState();
+    const [imageSrc12, setImageSrc12] = useState();
 
-    const [startDate,setStartDate] = useState();
-    const [endDate,setEndDate] = useState();
-    const [year,setYear] = useState();
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
+    const [year, setYear] = useState();
     const [startYear, setStartYear] = useState();
     const [endYear, setEndYear] = useState();
 
@@ -87,234 +87,234 @@ const Statistic = () => {
         axios.defaults.baseURL = 'http://127.0.0.1:8000';
 
 
-        if(statType===1){
+        if (statType === 1) {
             var config = {
                 method: 'post',
                 url: '/visualization/1/',
-                data : {
+                data: {
                     start_date: new Date(startDate).toLocaleDateString('sv'),
                     end_date: new Date(endDate).toLocaleDateString('sv'),
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===4){
+        else if (statType === 4) {
             var config = {
                 method: 'post',
                 url: '/visualization/4/',
-                data : {
+                data: {
                     start_date: new Date(startDate).toLocaleDateString('sv'),
                     end_date: new Date(endDate).toLocaleDateString('sv'),
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===2){
+        else if (statType === 2) {
             var config = {
                 method: 'post',
                 url: '/visualization/2/',
-                data : {
+                data: {
                     year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===5){
+        else if (statType === 5) {
             var config = {
                 method: 'post',
                 url: '/visualization/5/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===7){
+        else if (statType === 7) {
             var config = {
                 method: 'post',
                 url: '/visualization/7/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===8){
+        else if (statType === 8) {
             var config = {
                 method: 'post',
                 url: '/visualization/8/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===9){
+        else if (statType === 9) {
             var config = {
                 method: 'post',
                 url: '/visualization/9/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===10){
+        else if (statType === 10) {
             var config = {
                 method: 'post',
                 url: '/visualization/10/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===11){
+        else if (statType === 11) {
             var config = {
                 method: 'post',
                 url: '/visualization/11/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===12){
+        else if (statType === 12) {
             var config = {
                 method: 'post',
                 url: '/visualization/12/',
-                data : {
-                    year:  new Date(year).getFullYear()
+                data: {
+                    year: new Date(year).getFullYear()
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===3){
+        else if (statType === 3) {
             var config = {
                 method: 'post',
                 url: '/visualization/3/',
-                data : {
+                data: {
                     start_year: startYear,
                     end_year: endYear
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        else if(statType===6){
+        else if (statType === 6) {
             var config = {
                 method: 'post',
                 url: '/visualization/6/',
-                data : {
+                data: {
                     start_year: startYear,
                     end_year: endYear
                 }
             };
-            return axios(config).then( (response) => {
+            return axios(config).then((response) => {
                 handleInsertImage(response)
 
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
-        
-        
 
-        
+
+
+
     };
 
     const handleInsertImage = (response) => {
         const urlImage = response.data.url_image;
-        setTimeout(()=>{
+        setTimeout(() => {
             const cloneImage = require(`../image_visualization/${urlImage}`)
             switch (statType) {
                 case 1:
                     setImageSrc1(cloneImage);
-                  break;
+                    break;
                 case 2:
                     setImageSrc2(cloneImage);
-                  break;
+                    break;
                 case 3:
                     setImageSrc3(cloneImage);
-                  break;
+                    break;
                 case 4:
                     setImageSrc4(cloneImage);
-                  break;
+                    break;
                 case 5:
                     setImageSrc5(cloneImage);
-                  break;
+                    break;
                 case 6:
                     setImageSrc6(cloneImage);
-                  break;
+                    break;
                 case 7:
                     setImageSrc7(cloneImage);
                     break;
 
-                  case 8:
+                case 8:
                     setImageSrc8(cloneImage);
                     break;
 
@@ -322,25 +322,25 @@ const Statistic = () => {
                     setImageSrc9(cloneImage);
                     break;
 
-                  case 10:
+                case 10:
                     setImageSrc10(cloneImage);
                     break;
 
-                  case 11:
+                case 11:
                     setImageSrc11(cloneImage);
                     break;
 
-                  case 12:
+                case 12:
                     setImageSrc12(cloneImage);
                     break;
 
 
-              }
+            }
         }, 2000);
 
-        
+
         console.log(response);
-        
+
     }
 
     const handleChangeStatistic = () => {
@@ -360,9 +360,9 @@ const Statistic = () => {
     const handleYearRangePicker = (event) => {
         console.log(event)
         setStartYear(event[0].$y
-            )
+        )
         setEndYear(event[1].$y
-            )
+        )
     }
 
     const handleChangeStatType = (type) => {
@@ -379,7 +379,7 @@ const Statistic = () => {
         setImageSrc10(undefined)
         setImageSrc11(undefined)
         setImageSrc12(undefined)
-        localStorage.setItem("statType",type)
+        localStorage.setItem("statType", type)
         window.location.reload()
 
         // const element = document.getElementById("statistic-image");
@@ -398,19 +398,19 @@ const Statistic = () => {
         <div className='statistic-main'>
             <div className='nav-bar'>
                 {
-                    navBarOptions.map(item=>(
-                        <div className={`nav-item ${item.value === statType ? "active-nav-item" : ""}`} onClick={()=> handleChangeStatType(item.value)}>
+                    navBarOptions.map(item => (
+                        <div className={`nav-item ${item.value === statType ? "active-nav-item" : ""}`} onClick={() => handleChangeStatType(item.value)}>
                             {item.label}
                         </div>
                     ))
                 }
-               
+
             </div>
             <div className='statistic-content'>
                 <div className='select-area'>
                     {
-                        (statType===1 || statType===4) && 
-                        <RangePicker 
+                        (statType === 1 || statType === 4) &&
+                        <RangePicker
                             className='range-picker'
                             onChange={
                                 (val) => handleDateRangePicker(val)
@@ -418,16 +418,16 @@ const Statistic = () => {
                         />
                     }
                     {
-                        (statType===2 || statType===5 || statType === 7 || statType === 8|| statType === 9 || statType === 10 || statType === 11 || statType === 12) && 
-                        <DatePicker className="year-picker" picker="year"  onChange={
+                        (statType === 2 || statType === 5 || statType === 7 || statType === 8 || statType === 9 || statType === 10 || statType === 11 || statType === 12) &&
+                        <DatePicker className="year-picker" picker="year" onChange={
                             (val) => handleYearPicker(val)
-                        }/>
+                        } />
                     }
                     {
-                        (statType===3 || statType===6) && 
+                        (statType === 3 || statType === 6) &&
                         <RangePicker className='year-range-picker' picker="year" onChange={
                             (val) => handleYearRangePicker(val)
-                        }/>
+                        } />
                     }
                     <Button
                         onClick={fetchStatistic}
@@ -436,62 +436,62 @@ const Statistic = () => {
                 <div id='statistic-image-father' className='statistic-diagram'>
                     {
                         imageSrc1 &&
-                        <img id='statistic-image' src={imageSrc1}/>
+                        <img id='statistic-image' src={imageSrc1} />
 
                     }
                     {
                         imageSrc2 &&
-                        <img id='statistic-image' src={imageSrc2}/>
+                        <img id='statistic-image' src={imageSrc2} />
 
                     }
                     {
                         imageSrc3 &&
-                        <img id='statistic-image' src={imageSrc3}/>
+                        <img id='statistic-image' src={imageSrc3} />
 
                     }
                     {
                         imageSrc4 &&
-                        <img id='statistic-image' src={imageSrc4}/>
+                        <img id='statistic-image' src={imageSrc4} />
 
                     }
                     {
                         imageSrc5 &&
-                        <img id='statistic-image' src={imageSrc5}/>
+                        <img id='statistic-image' src={imageSrc5} />
 
                     }
                     {
                         imageSrc6 &&
-                        <img id='statistic-image' src={imageSrc6}/>
+                        <img id='statistic-image' src={imageSrc6} />
 
                     }
                     {
                         imageSrc7 &&
-                        <img id='statistic-image' src={imageSrc7}/>
+                        <img id='statistic-image' src={imageSrc7} />
 
                     }
                     {
                         imageSrc8 &&
-                        <img id='statistic-image' src={imageSrc8}/>
+                        <img id='statistic-image' src={imageSrc8} />
 
                     }
                     {
                         imageSrc9 &&
-                        <img id='statistic-image' src={imageSrc9}/>
+                        <img id='statistic-image' src={imageSrc9} />
 
                     }
                     {
                         imageSrc10 &&
-                        <img id='statistic-image' src={imageSrc10}/>
+                        <img id='statistic-image' src={imageSrc10} />
 
                     }
                     {
                         imageSrc11 &&
-                        <img id='statistic-image' src={imageSrc11}/>
+                        <img id='statistic-image' src={imageSrc11} />
 
                     }
                     {
                         imageSrc12 &&
-                        <img id='statistic-image' src={imageSrc12}/>
+                        <img id='statistic-image' src={imageSrc12} />
 
                     }
                 </div>
