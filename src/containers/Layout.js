@@ -95,7 +95,7 @@ class CustomLayout extends React.Component {
                       />
                       <Dropdown.Item
                         icon="arrow right"
-                        text="Hỗ trợ ra quyết định"
+                        text="Phân tích đối thủ"
                         onClick={() =>
                           this.props.history.push("/support-admin")
                         }

@@ -141,7 +141,7 @@ class ProductDetail extends React.Component {
                     )}
                   </React.Fragment>
                 }
-                description={item.description}
+                description={`${item.price}Đ`}
                 extra={
                   <React.Fragment>
                     <Button
@@ -190,12 +190,13 @@ class ProductDetail extends React.Component {
               )}
             </Grid.Column>
             <Grid.Column>
-              <Header as="h2">Hãy thử các loại khác nhau nha dân chơi</Header>
+              <Header as="h2">Hãy thử các loại khác nhau nha</Header>
               {data.variations &&
                 data.variations.map(v => {
                   return (
                     <React.Fragment key={v.id}>
                       <Header as="h3">{v.name}</Header>
+
                       <Item.Group divided>
                         {v.item_variations.map(iv => {
                           return (

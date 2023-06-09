@@ -88,6 +88,8 @@ class ProductList extends React.Component {
                   <Item.Meta>
                     <span className="cinema">{item.category}</span>
                   </Item.Meta>
+                  <Item.Description style={{color: 'red'}}>{`${item.price} Đ`}</Item.Description>
+
                   <Item.Description>{item.description}</Item.Description>
                   <Item.Extra>
                     {/* <Button
