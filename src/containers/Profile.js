@@ -204,7 +204,7 @@ class AddressForm extends React.Component {
         <Form.Input
           required
           name="street_address"
-          placeholder="Đường/phố"
+          placeholder=""
           onChange={this.handleChange}
           value={formData.street_address}
         />
